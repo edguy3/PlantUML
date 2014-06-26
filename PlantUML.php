@@ -225,14 +225,14 @@ function renderPlantUML($PlantUML_Source, $imgFile, $dirname, $filename_prefix) 
     } else {
         $typestr = '';
     }
-    $command = "java -jar ".$plantumlJar.
-               "{$typestr} -o \"{$dirname}\" \"{$umlFile}\" || echo 'Cannot locate Java'";
  
-    $status_code = exec($command);
+    $status_code = exec("which java > /dev/null || echo 'Cannot locate Java'");
     if(strlen($status_code)>0) {
-        echo $status_code;
-        exit;
+        echo "<PRE>$status_code</PRE>";
+	exit;
     }
+    $command = "java -jar ".$plantumlJar. "{$typestr} -o \"{$dirname}\" \"{$umlFile}\"  ";
+    $status_code = exec($command);
 
  
     // Delete temporary uml text file
