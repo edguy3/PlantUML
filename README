@@ -26,6 +26,7 @@ In order to install this plugin, please follow the steps below.
 
 5. When using local processing: get the plantuml.jar from SourceForge
    # wget https://downloads.sourceforge.net/project/plantuml/plantuml.jar
+   Note Well: Java must be installed and in the path as well. 
    
 6. (Optional) Edit PlantUML.php and change the variable $plantumlImagetype
    to your preference. Mind that SVG produces the superior graphics, but that

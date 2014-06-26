@@ -226,9 +226,14 @@ function renderPlantUML($PlantUML_Source, $imgFile, $dirname, $filename_prefix) 
         $typestr = '';
     }
     $command = "java -jar ".$plantumlJar.
-               "{$typestr} -o \"{$dirname}\" \"{$umlFile}\"";
+               "{$typestr} -o \"{$dirname}\" \"{$umlFile}\" || echo 'Cannot locate Java'";
  
     $status_code = exec($command);
+    if(strlen($status_code)>0) {
+        echo $status_code;
+        exit;
+    }
+
  
     // Delete temporary uml text file
     unlink($umlFile);
